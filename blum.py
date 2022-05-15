@@ -19,6 +19,7 @@ class BloomFilter:
         return result
 
     def hash2(self, str1):
+        # a = ''.join(format(ord(x), '08b')
         result = 0
         for c in str1:
             code = ord(c)
