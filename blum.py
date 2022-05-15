@@ -1,8 +1,6 @@
-from calendar import c
-
 
 class BloomFilter:
-    
+
     def __init__(self, f_len):
         self.filter_len = f_len
         self.filter = []
@@ -16,17 +14,15 @@ class BloomFilter:
         result = 0
         for c in str1:
             code = ord(c)
-            result = (result * 17 + code) % self.filter_len
+            result += (result * 17 + code) % self.filter_len
         # реализация ...
         return result
 
     def hash2(self, str1):
-        ...
-        # 223 
         result = 0
         for c in str1:
             code = ord(c)
-            result = (result * 223 + code) % self.filter_len
+            result += (result * 223 + code) % self.filter_len
         return result
 
     def add(self, str1):
@@ -43,3 +39,4 @@ class BloomFilter:
             return True
         return False
         # проверка, имеется ли строка str1 в фильтре
+с = BloomFilter(32)
