@@ -1,11 +1,12 @@
 
+from audioop import add
+
+
 class BloomFilter:
 
     def __init__(self, f_len):
         self.filter_len = f_len
         self.filter = []
-        for i in range(self.filter_len):
-            self.filter.append(0)
         # создаём битовый массив длиной f_len ...
 
 
@@ -19,7 +20,9 @@ class BloomFilter:
         return result
 
     def hash2(self, str1):
-        # a = ''.join(format(ord(x), '08b')
+        x = "d"
+        a = format(ord(x),"b")
+        # ''.join(format(ord(x), '08b'))
         result = 0
         for c in str1:
             code = ord(c)
@@ -27,6 +30,10 @@ class BloomFilter:
         return result
 
     def add(self, str1):
+        str_encode = bytes(str1,"utf-8")
+        for byte in str_encode:
+            a = format(byte,"b")
+            self.filter.append(a)
         h1 = self.hash1(str1)
         h2 = self.hash2(str1)
         self.filter[h1] = 1
@@ -39,5 +46,27 @@ class BloomFilter:
         if self.filter[h1] == 1 and self.filter[h2] == 1:
             return True
         return False
-        # проверка, имеется ли строка str1 в фильтре
-с = BloomFilter(32)
+c = BloomFilter(123)
+d = "9012345678"
+c.add(d)
+# result = []
+# s = "0123456789"
+# for c in s:
+#     bits = bin(ord(c))[2:]
+#     bits = '00000000'[len(bits):] + bits
+#     result.extend([int(b) for b in bits])
+# print(result)
+# c = BloomFilter(32)
+# c.hash2("dfds")
+# x = "5"
+# t = 123456789
+# a = bytes(x, 'utf-8')
+# b = x.encode('utf-8')
+# h = ''.join(format(ord(x), '08b'))
+# z = bin(t)
+# # a = "08b" + ''.join(format(ord(x), '08b'))
+# print(c.to_bin())
+# # print(int(bin(50),2))
+# # print(type(a))
+# # print(type(b))
+# # print(type(z))
