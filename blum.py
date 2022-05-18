@@ -4,7 +4,10 @@ class BloomFilter:
 
     def __init__(self, f_len):
         self.filter_len = f_len
-        self.filter = [0] * self.filter_len
+        a = 0b0000
+        self.filter = []
+        for i in range(self.filter_len):
+            self.filter.append(a)
         # создаём битовый массив длиной f_len ...
 
 
@@ -34,17 +37,20 @@ class BloomFilter:
         #         self.filter.append(bit)
         h1 = self.hash1(str1)
         h2 = self.hash2(str1)
-        self.filter[h1] = 1
-        self.filter[h2] = 1
+        self.filter[h1] = self.filter[h1] ^ 0b0001
+        self.filter[h2] = self.filter[h2] ^ 0b0001
         # str_one = bytes(my_str, ‘utf-8’)
         # добавляем строку str1 в фильтр
 
     def is_value(self, str1):
         h1 = self.hash1(str1)
         h2 = self.hash2(str1)
-        if self.filter[h1] == 1 and self.filter[h2] == 1:
+        if self.filter[h1] == 0b0001 and self.filter[h2] == 0b0001:
             return True
         return False
+# bloom = BloomFilter(32)
+# bloom.add("15616131841561156")
+# print(bloom.is_value("15616131841561156"))
 # c = BloomFilter(32)
 # c.add("0123456789")
 # c.add("1234567890")
