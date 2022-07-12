@@ -10,7 +10,7 @@ class BloomFilter:
 
     def hash_function_1(self, input_str):# было str_1 - входная строка, было hash1 - фнукция рассчитывающая hash функцию
         # 17
-        result_of_hash_function = 0 # было result - результат вычислений
+        result_of_hash_function = 0 #  result - result_of_hash_function - результат вычислений; второе задание result_of_hash_function - reslt_of_hsh_fun
         for letter in input_str:# было str1, было c
             letter_to_num = ord(let)# было code - преобразует символ строки в числовое представление
             result_of_hash_function +=  result_of_hash_function * 17 + letter_to_num
